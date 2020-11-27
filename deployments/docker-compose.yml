@@ -1,0 +1,33 @@
+version: "2"
+services:
+    app:
+        container_name: dog
+        build:
+            context: ../
+            dockerfile: deployments/dog/Dockerfile
+        ports:
+            - "5000:5000"
+    website:
+        container_name: website
+        build:
+            context: ../
+            dockerfile: deployments/website/Dockerfile
+        ports:
+            - "80:80"
+    breed:
+        container_name: breed
+        build:
+            context: ../
+            dockerfile: deployments/breed/Dockerfile
+        ports:
+            - "8181:8181"
+
+
+
+
+
+
+
+
+        
+                        
