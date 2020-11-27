@@ -1,0 +1,9 @@
+flask
+uWSGI
+tensorflow
+numpy
+pybase64
+flask-cors
+opencv-python
+pillow
+scikit-image
