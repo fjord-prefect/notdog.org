@@ -18,23 +18,20 @@
 		<div class="wow bounceInLeft">
 			<img class='animated-gif' src="gif.gif" alt=”animated” />
 		</div>
-		<div class="flier" id="label"></div>
 		<h3>
 			<div class="instructions">
-				Upload an image of your pupper and our robot technology will guess which breed your dog looks most similar too!
+				Upload an image of your pupper and our robot technology will guess which breed your dog looks most similar to!
 			</div>
 		</h3>
-
-
-
-
+		<div class="flier" id="label"></div>
 		<input id="image-selector" type="file" size=".1"></input>
-		<button id="predict-button">Predict</button>
+		<button onclick="getPreds()" id="predict-button">Predict</button>
 		<img class='upimg' id="selected-image" src=""/>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         let base64Image;
 				let extension;
+
         $("#image-selector").change(function() {
           let reader = new FileReader();
           reader.onload = function(e) {
@@ -45,28 +42,41 @@
             }
           reader.readAsDataURL($("#image-selector")[0].files[0]);
         });
-        $("#predict-button").click(function(event){
-          let message = {
-                image: base64Image,
-								type: extension
-            };
-          $.post("http://165.227.88.103:5000/predict", JSON.stringify(message),
-						function(response){
-							var outputImg = document.createElement('img');
-							outputImg.setAttribute("class", "downimg");
-							outputImg.setAttribute("id", "predimg");
-							outputImg.src = response.prediction;
-							document.body.appendChild(outputImg);
-							if (response.label=="NOT DOG"){
-								$("#label").text(response.label);
-							} else {
-								$.post("http://165.227.88.103:8181/predict", JSON.stringify(message),
-									function(response){
-										$("#label").text(response.breed);
-									});
-							};
-            });
-        });
+
+				async function getPreds() {
+					let message = {
+						image: base64Image,
+						type: extension
+					};
+					const dogresponse = await fetch("http://165.227.88.103:5000/predict",{
+						method: 'POST',
+						body: JSON.stringify(message)
+					});
+					const breedresponse = await fetch("http://165.227.88.103:8181/predict",{
+						method: 'POST',
+						body: JSON.stringify(message)
+					});
+
+					const yolo = await dogresponse.json();
+					const breedjson = await breedresponse.json();
+
+					var yoloimg = yolo.prediction;
+					var outputImg = document.createElement('img');
+					outputImg.setAttribute("class", "downimg");
+					outputImg.setAttribute("id", "predimg");
+					outputImg.src = yoloimg;
+					document.body.appendChild(outputImg);
+
+					var dog = yolo.label;
+					var breed = breedjson.breed;
+					if (dog == "NOT DOG"){
+						$("#label").text(dog)
+					} else {
+						$("#label").text(breed)
+					}
+
+					return label;
+				}
 
     </script>
 		<script src="js/wow.min.js"></script>
