@@ -18,11 +18,11 @@ body {
   text-align: center;
 }
 
-h3 {
+.instructions {
   position: absolute;
-  top: 320px;
-  font-size: 2em;
-  margin-right: 48%;
+  top: 360px;
+  font-size: 1.5em;
+  margin-right: 60%;
   font-family: 'Orbitron';
   color: #6f3d99;
   text-shadow:
@@ -30,12 +30,10 @@ h3 {
       0 0 10px #ff71ce,
       0 0 20px white;
 }
-h4 {
-  position: absolute;
-  right: 120px;
-  top: 320px;
-  z-index: 2;
-  font-size: 4em;
+.flier {
+  position: relative;
+  z-index: 4;
+  font-size: 6em;
   font-weight: 100px;
   font-family: 'Orbitron';
   transform: perspective(11cm) rotateX(0deg) rotateY(-20deg);
@@ -45,7 +43,38 @@ h4 {
       0 0 10px #ff71ce,
       0 0 20px white;
 
+-webkit-animation: moveX 2s linear 0s infinite alternate, moveY 3.4s linear 0s infinite alternate;
+  -moz-animation: moveX 2s linear 0s infinite alternate, moveY 3.4s linear 0s infinite alternate;
+  -o-animation: moveX 2s linear 0s infinite alternate, moveY 3.4s linear 0s infinite alternate;
+  animation: moveX 2s linear 0s infinite alternate, moveY 3.4s linear 0s infinite alternate;
 }
+
+@-webkit-keyframes moveX {
+  from { left: -190px; } to { left: 50px; }
+}
+@-moz-keyframes moveX {
+  from { left: -190px; } to { left: 50px; }
+}
+@-o-keyframes moveX {
+  from { left: -190px; } to { left: 50px; }
+}
+@keyframes moveX {
+  from { left: -190px; } to { left: 50px; }
+}
+
+@-webkit-keyframes moveY {
+  from { top: 0; } to { top: 480px; }
+}
+@-moz-keyframes moveY {
+  from { top: 0; } to { top: 480px; }
+}
+@-o-keyframes moveY {
+  from { top: 0; } to { top: 480px; }
+}
+@keyframes moveY {
+  from { top: 0; } to { top: 480px; }
+}
+
 .neon {
   text-align: left;
   position: relative;
@@ -110,36 +139,35 @@ h4 {
 
 img.animated-gif {
   position: absolute;
-  margin-top: 8%;
-  margin-right: 6%;
-  float: right;
-  width: 40%;
+  top: 335px;
+  right: 80px;
+  width: 52%;
   height: auto;
   transform: perspective(13cm) rotateX(0deg) rotateY(-20deg);
-  border: 3px solid #982470;
+  border: 4px solid #982470;
 }
 
 img.upimg {
-  position: fixed;
-  bottom:0px;
-  left:50%;
-  right:50%;
-  height:200px;
-  width:auto;
+  position: absolute;
+  top: 610px;
+  left:150px;
+  height:auto;
+  width:150px;
 }
 img.downimg {
   position: absolute;
-  margin-top: 8%;
-  margin-right: 6%;
-  float: right;
-  width: 40%;
+  top: 335px;
+  right: 80px;
+  width: 52%;
   height: auto;
   transform: perspective(13cm) rotateX(0deg) rotateY(-20deg);
-  border: 3px solid #982470;
+  border: 4px solid #982470;
 }
 button {
   position: absolute;
-  top: 580px;
+  z-index: 3;
+  top: 640px;
+  left: 300px;
   font-family: 'Monoton';
   font-size: 1.4em;
   height:70px;
@@ -169,10 +197,9 @@ button:before {
 }
 input {
   position: absolute;
-  top: 607px;
+  top: 667px;
   left: 60px;
 }
-
 
 
 @media only screen and (max-width: 600px) {
@@ -196,7 +223,7 @@ input {
     text-align: center;
   }
 
-  h3 {
+  .instructions {
     position: absolute;
     text-align: center;
     top: 370px;
