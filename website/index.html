@@ -18,14 +18,19 @@
 		<div class="wow bounceInLeft">
 			<img class='animated-gif' src="gif.gif" alt=”animated” />
 		</div>
-		<h3>Upload an image of your pupper and our robot technology will guess which breed your dog looks most similar too!</h3>
+		<div class="flier" id="label"></div>
+		<h3>
+			<div class="instructions">
+				Upload an image of your pupper and our robot technology will guess which breed your dog looks most similar too!
+			</div>
+		</h3>
 
-		<h4 class="doglabel" id="label"></h4>
-		<h5 class="dogbreed" id="breed"></h5>
-		<input id="image-selector" type="file">
+
+
+
+		<input id="image-selector" type="file" size=".1"></input>
 		<button id="predict-button">Predict</button>
 		<img class='upimg' id="selected-image" src=""/>
-
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         let base64Image;
@@ -37,33 +42,32 @@
                 $('#selected-image').attr("src", dataURL);
 								extension = dataURL.split(';base64,')[0].split('/')[1];
                 base64Image = dataURL.replace(/data:image\/(png|jpg|jpeg|JPG|JPEG|);base64,/,"");
-								console.log(extension);
-                console.log(base64Image);
             }
           reader.readAsDataURL($("#image-selector")[0].files[0]);
         });
-
         $("#predict-button").click(function(event){
           let message = {
                 image: base64Image,
 								type: extension
             };
-            console.log(message);
-            $.post("http://165.227.88.103:5000/predict", JSON.stringify(message),
+          $.post("http://165.227.88.103:5000/predict", JSON.stringify(message),
 						function(response){
 							var outputImg = document.createElement('img');
 							outputImg.setAttribute("class", "downimg");
 							outputImg.setAttribute("id", "predimg");
 							outputImg.src = response.prediction;
 							document.body.appendChild(outputImg);
-
-							$("#label").text(response.label)
+							if (response.label=="NOT DOG"){
+								$("#label").text(response.label);
+							} else {
+								$.post("http://165.227.88.103:8181/predict", JSON.stringify(message),
+									function(response){
+										$("#label").text(response.breed);
+									});
+							};
             });
-            $.post("http://165.227.88.103:8181/predict", JSON.stringify(message),
-		                                function(response){
-							$("#breed").text(response.breed)
-	    });
         });
+
     </script>
 		<script src="js/wow.min.js"></script>
 		<script>
