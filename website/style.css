@@ -139,10 +139,11 @@ body {
 
 img.animated-gif {
   position: absolute;
+  z-index: 1;
   top: 335px;
   right: 80px;
   width: 52%;
-  height: auto;
+  height: 360px;
   transform: perspective(13cm) rotateX(0deg) rotateY(-20deg);
   border: 4px solid #982470;
 }
@@ -156,10 +157,11 @@ img.upimg {
 }
 img.downimg {
   position: absolute;
+  z-index: 2;
   top: 335px;
   right: 80px;
   width: 52%;
-  height: auto;
+  height: 360px;
   transform: perspective(13cm) rotateX(0deg) rotateY(-20deg);
   border: 4px solid #982470;
 }

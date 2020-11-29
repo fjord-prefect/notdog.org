@@ -44,6 +44,8 @@
         });
 
 				async function getPreds() {
+					console.log(document.getElementsByClassName("animated-gif")[0].src);
+					document.getElementsByClassName("animated-gif")[0].src = "VAyR.gif";
 					let message = {
 						image: base64Image,
 						type: extension
