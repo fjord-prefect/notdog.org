@@ -228,7 +228,7 @@ input {
     position: absolute;
     text-align: center;
     top: 370px;
-    font-size: 1.3em;
+    font-size: 1.15em;
     font-family: 'Orbitron';
     color: #6f3d99;
     text-shadow:
@@ -276,9 +276,9 @@ input {
   .neon-body {
     position: absolute;
     left: 35px;
-    top: 230px;
+    top: 250px;
     font-family: 'Orbitron';
-    font-size: 2em;
+    font-size: 1.7em;
     color: white;
     filter: blur(.7px);
     text-shadow:
@@ -315,7 +315,7 @@ input {
   img.animated-gif {
     position: absolute;
     z-index: 1;
-    top: 360px;
+    top: 365px;
     right: 20px;
     width: 52%;
     height: 240px;
@@ -325,7 +325,7 @@ input {
   img.downimg {
     position: absolute;
     z-index: 2;
-    top: 360px;
+    top: 365px;
     right: 20px;
     width: 52%;
     height: 240px;
@@ -342,7 +342,7 @@ input {
   button {
     position: absolute;
     top: 680px;
-    left:160px;
+    left:130px;
     font-family: 'Monoton';
     font-size: 1.4em;
     height:70px;
@@ -373,6 +373,6 @@ input {
 
   input {
     position: absolute;
-    left: 190px;
+    left: 160px;
     top: 640px;
   }
