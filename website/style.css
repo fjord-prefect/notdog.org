@@ -1,14 +1,8 @@
 html {
-  background-image: auto;
-  background-size: 2500px;
+  background-size: 2400px;
   background-position: top center;
   background-repeat: no-repeat;
-  height: 220px;
-  width: 100%;
-  background-image: url(wide.jpg);
-  height: 100%;
-  background-image: url(wide.jpg), linear-gradient(#01cdfe, #C9DCB9);
-  padding-bottom: 1000px;
+  background-image: url("wide.jpg"), url("https://plaza.one/img/backs/79.gif");
 }
 
 header {
@@ -20,13 +14,14 @@ body {
 
 .instructions {
   position: absolute;
-  top: 360px;
-  font-size: 1.5em;
-  margin-right: 60%;
+  z-index:1;
+  top: 230px;
+  font-size: 1.7em;
+  margin-right: 56%;
   font-family: 'Orbitron';
   color: #6f3d99;
   text-shadow:
-      0 0 1px white,
+      0 0 6px white,
       0 0 10px #ff71ce,
       0 0 20px white;
 }
@@ -78,9 +73,9 @@ body {
 .neon {
   text-align: left;
   position: relative;
-  left: 50px;
+  left: 38px;
   font-family: 'Monoton';
-  font-size: 3em;
+  font-size: 2.8em;
   font-style: italic;
   font-weight:  2;
   letter-spacing: .1em;
@@ -99,16 +94,18 @@ body {
 }
 .neon-body {
   position: absolute;
-  left: 35px;
-  top: 238px;
+  left: 108px;
+  top: 94px;
   font-family: 'Orbitron';
-  font-size: 2em;
+  font-size: 1.4em;
   color: white;
-  filter: blur(.7px);
+  filter: blur(.6px);
   text-shadow:
-      0 0 1px #B2769D,
-      0 0 10px #B2769D,
-      0 0 20px #ff71ce;
+    0 0 10px yellow,
+    0 0 20px orange,
+    0 0 40px orange,
+    0 0 80px orange,
+    0 0 160px red;
 }
 .neon-body:after {
   content: attr(data-text);
@@ -140,38 +137,46 @@ body {
 img.animated-gif {
   position: absolute;
   z-index: 1;
-  top: 335px;
-  right: 80px;
-  width: 52%;
+  top: 240px;
+  right: 20px;
+  width: 53%;
   height: 360px;
-  transform: perspective(13cm) rotateX(0deg) rotateY(-20deg);
-  border: 4px solid #982470;
+  border: .5px solid beige;
+  background-color: beige;
+  box-shadow:
+    0 0 3px 1px beige;
+ 
 }
 
 img.upimg {
-  position: absolute;
-  top: 610px;
-  left:150px;
-  height:auto;
-  width:150px;
+  position: fixed;
+  top:240px;
+  left:2%;
+  height:360px;
+  width:auto;
+  z-index: 0;
+  opacity: .7;
 }
 img.downimg {
   position: absolute;
-  z-index: 2;
-  top: 335px;
-  right: 80px;
-  width: 52%;
+  z-index: 1;
+  top: 240px;
+  right: 20px;
+  width: 53%;
   height: 360px;
-  transform: perspective(13cm) rotateX(0deg) rotateY(-20deg);
-  border: 4px solid #982470;
+  border: .5px solid beige;
+  background-color: beige;
+  box-shadow:
+    0 0 3px 1px beige;
 }
+
 button {
-  position: absolute;
+  position: fixed;
   z-index: 3;
-  top: 640px;
-  left: 300px;
+  left: 5%;
+  top: 485px;
   font-family: 'Monoton';
-  font-size: 1.4em;
+  font-size: 1.5em;
   height:70px;
   width:150px;
   color: yellow;
@@ -187,6 +192,7 @@ button {
     0 0 20px white,
     0 0 40px yellow;
 }
+
 button:before {
   content: '';
   position: absolute;
@@ -197,12 +203,55 @@ button:before {
       0 0 10px #B2769D,
       0 0 20px #ff71ce;
 }
+
 input {
-  position: absolute;
-  top: 667px;
-  left: 60px;
+  position: fixed;
+  z-index: 1;
+  top: 510px;
+  left: 28%;
 }
 
+img.lowergifimg {
+  position: fixed;
+  top: 220px;
+  left: 0px;
+  width: 110%;
+  opacity:.6;
+  height: auto;
+}
+
+.footer{
+  position:fixed; 
+  background-color:Beige;
+  bottom: 10px;
+  left: 20px;
+  right: 20px;
+  height: 70px;
+  opacity: .855555;
+}
+
+.footer-text-left {
+  font-size:22px;
+  font-weight: BOLD; 
+  font-family: 'Andale Mono';
+  padding-left:15px;
+  float:left;
+}
+
+a.menu {
+  background-color:#c29c9b;
+  border: 15px solid #c29c9b;
+  color: white;
+  font-size:20px;
+  word-spacing: -.3em;
+}
+
+a.menu:hover {
+  background-color:#c29c9b;
+  border: 25px solid #c29c9b;
+  color: white;
+  font-size:25px;
+}
 @media only screen and (max-width: 600px) {
   html {
     background-image: auto;

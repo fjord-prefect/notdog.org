@@ -20,12 +20,24 @@
 				Upload an image of your pupper and our robot technology will guess which breed your dog looks most similar to!
 		</h3>
 		<div class="flier" id="label"></div>
-
-		<input id="image-selector" type="file" ></input>
-
-		<button onclick="fetchLabelAndBreed()" id="predict-button">Predict</button>
-		<img class='upimg' id="selected-image" src=""/>
-
+        <div class="animated-gif">
+    		<input id="image-selector" type="file" ></input>
+    		<button onclick="fetchLabelAndBreed()" id="predict-button">Predict</button>
+        </div>
+        <div class="lowergif">
+            <img class="lowergifimg" src="https://plaza.one/img/backs/45.gif">
+        </div>
+        <img class='upimg' id="selected-image" src=""/>
+        <div class="footer">
+            <p class="footer-text-left">
+                <a href="collaborators.html" style="text-decoration:none" class="menu">Collaborators</a>
+                <a href="https://www.apsofdurham.org" style="text-decoration:none" class="menu">Inspiration</a>
+                <a href="https://www.github.com/fjord-prefect"
+                    style="text-decoration:none" class="menu">Code</a>
+                <a href="https://www.apsofdurham.org/how-you-can-help/donate/"
+                   class="menu" style="text-decoration:none">Save A Pup</a>
+            </p>
+        </div>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
 				let base64Image;
