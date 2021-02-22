@@ -2,19 +2,22 @@
 <html lang="en">
 
 <head>
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<link rel="stylesheet" href="animate.css">
-		<link href="https://fonts.googleapis.com/css?family=Monoton|Orbitron&display=swap" rel="stylesheet">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="animate.css">
+	<link href="https://fonts.googleapis.com/css?family=Monoton|Orbitron&display=swap" rel="stylesheet">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+	
 <header>
 	<div class='wow bounceInRight'>
 		<h1 class='neon' data-text="There Will Be Dogs">There Will Be Dogs</h1>
 	</div>
 		<h2 class="neon-body" data-text="Have our robot guess your dog's breed!">Have our robot guess your dog's breed!</h2>
 </header>
+	
 <body>
+<<<<<<< HEAD
 		<img class='animated-gif' src="gif.gif" alt=”animated” />
 		<h3 class="instructions">
 				Upload an image of your pupper and our robot technology will guess which breed your dog looks most similar to!
@@ -102,32 +105,106 @@
 							body: JSON.stringify(message)
 						})
 					]);
+=======
+	<img class='animated-gif' src="gif.gif" alt=”animated” />
+	<h3 class="instructions">
+		Upload an image of your pupper and our robot technology will guess which breed your dog looks most similar to!
+	</h3>
+	<div class="flier" id="label"></div>
+	<input id="image-selector" type="file" ></input>
+	<button onclick="fetchLabelAndBreed()" id="predict-button">Predict</button>
+	<img class='upimg' id="selected-image" src=""/>
 
-					const yolo = await dogresponse.json();
-					const breedjson = await breedresponse.json();
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	
+	<script>
+	let base64Image;
+	let extension;
 
-					var yoloimg = yolo.prediction;
-					var outputImg = document.createElement('img');
-					outputImg.setAttribute("class", "downimg");
-					outputImg.setAttribute("id", "predimg");
-					outputImg.src = yoloimg;
-					document.body.appendChild(outputImg);
+	$("#image-selector").change(function() {
+		let reader = new FileReader();
+		const img = new Image();
+		reader.onload = function(e) {
+			img.src = reader.result;
+			$('#selected-image').attr("src", img.src);
+			var canvas = document.createElement("canvas");
+			var ctx = canvas.getContext("2d");
+			img.onload = function () {
+				var canvas = document.createElement("canvas");
+				var ctx = canvas.getContext("2d");
+				ctx.drawImage(img, 0, 0);
+				var MAX_WIDTH = 400;
+				var MAX_HEIGHT = 400;
+				var width = img.width;
+				var height = img.height;
 
-					var breed = breedjson.breed;
-					var label = yolo.label;
-
-					if (label=="NOT DOG") {
-						$("#label").text(label)
-					} else {
-						$("#label").text(breed)
+				if (width > height) {
+					if (width > MAX_WIDTH) {
+						height *= MAX_WIDTH / width;
+						width = MAX_WIDTH;
 					}
-				};
-    </script>
-		<script src="js/wow.min.js"></script>
-		<script>
- 		new WOW().init();
-		</script>
+				} else {
+					if (height > MAX_HEIGHT) {
+						width *= MAX_HEIGHT / height;
+						height = MAX_HEIGHT;
+					}
+				}
+				
+				canvas.width = width;
+				canvas.height = height;
+				var ctx = canvas.getContext("2d");
+				ctx.drawImage(img, 0, 0, width, height);
+				let dataurl = canvas.toDataURL();
+				document.getElementById('selected-image').src = dataurl;
+				extension = dataurl.split(';base64,')[0].split('/')[1];
+				base64Image = dataurl.replace(/data:image\/(png|jpg|jpeg|JPG|JPEG|);base64,/,"");
+			}
+          	}
+		
+	reader.readAsDataURL($("#image-selector")[0].files[0]);
+	});
+>>>>>>> cdac15847ac629cce531178d7184761db6cdb911
 
+	async function fetchLabelAndBreed() {
+		document.getElementsByClassName("animated-gif")[0].src = "VAyR.gif";
+		let message = {
+			image: base64Image,
+			type: extension
+		};
+		const [dogresponse, breedresponse] = await Promise.all([
+			fetch("http://165.227.88.103:5000/predict",{
+				method: 'POST',
+				body: JSON.stringify(message)
+			}),
+			fetch("http://165.227.88.103:8181/predict",{
+				method: 'POST',
+				body: JSON.stringify(message)
+			})
+		]);
+
+		const yolo = await dogresponse.json();
+		const breedjson = await breedresponse.json();
+
+		var yoloimg = yolo.prediction;
+		var outputImg = document.createElement('img');
+		outputImg.setAttribute("class", "downimg");
+		outputImg.setAttribute("id", "predimg");
+		outputImg.src = yoloimg;
+		document.body.appendChild(outputImg);
+
+		var breed = breedjson.breed;
+		var label = yolo.label;
+
+		if (label=="NOT DOG") {
+			$("#label").text(label)
+		} else {
+			$("#label").text(breed)
+		}
+	};
+		
+	</script>
+	<script src="js/wow.min.js"></script>
+	<script> new WOW().init();
+	</script>
 </body>
-
 </html>
