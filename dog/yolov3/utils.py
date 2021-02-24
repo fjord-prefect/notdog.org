@@ -286,7 +286,7 @@ def detect_image(Yolo, b64, input_size=416, show=False, CLASSES=TRAIN_CLASSES, s
     scale = min(tw/w, th/h)
     nw, nh  = int(scale * w), int(scale * h)
     image_resized = cv2.resize(image, (nw, nh))
-    image_paded = np.full(shape=[th, tw, 3], fill_value=(143, 188, 139))
+    image_paded = np.full(shape=[th, tw, 3], fill_value=(255, 255, 255))
     dw, dh = (tw - nw) // 2, (th-nh) // 2
     image_paded[dh:nh+dh, dw:nw+dw, :] = image_resized
 

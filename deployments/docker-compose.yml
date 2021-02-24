@@ -1,6 +1,6 @@
 version: "2"
 services:
-    app:
+    dog:
         container_name: dog
         build:
             context: ../
@@ -21,7 +21,13 @@ services:
             dockerfile: deployments/breed/Dockerfile
         ports:
             - "8181:8181"
-
+    notdog:
+        container_name: notdog
+        build:
+            context: ../
+            dockerfile: deployments/notdog/Dockerfile
+        ports:
+            - "8081:8081"
 
 
 
