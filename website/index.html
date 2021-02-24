@@ -8,202 +8,125 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-	
 <header>
 	<div class='wow bounceInRight'>
 		<h1 class='neon' data-text="There Will Be Dogs">There Will Be Dogs</h1>
 	</div>
 		<h2 class="neon-body" data-text="Have our robot guess your dog's breed!">Have our robot guess your dog's breed!</h2>
 </header>
-	
 <body>
-		<img class='animated-gif' src="gif.gif" alt=”animated” />
-		<h3 class="instructions">
-				Upload an image of your pupper and our robot technology will guess which breed your dog looks most similar to!
-		</h3>
-		<div class="flier" id="label"></div>
-        <div class="animated-gif">
-    		<input id="image-selector" type="file" ></input>
-    		<button onclick="fetchLabelAndBreed()" id="predict-button">Predict</button>
-        </div>
-        <div class="lowergif">
-            <img class="lowergifimg" src="https://plaza.one/img/backs/45.gif">
-        </div>
-        <img class='upimg' id="selected-image" src=""/>
-        <div class="footer">
-            <p class="footer-text-left">
-                <a href="collaborators.html" style="text-decoration:none" class="menu">Collaborators</a>
-                <a href="https://www.apsofdurham.org" style="text-decoration:none" class="menu">Inspiration</a>
-                <a href="https://www.github.com/fjord-prefect"
-                    style="text-decoration:none" class="menu">Code</a>
-                <a href="https://www.apsofdurham.org/how-you-can-help/donate/"
-                   class="menu" style="text-decoration:none">Save A Pup</a>
-            </p>
-        </div>
-		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-				let base64Image;
-				let extension;
-
-        $("#image-selector").change(function() {
-          let reader = new FileReader();
-					const img = new Image();
-          reader.onload = function(e) {
-
-						img.src = reader.result;
-            $('#selected-image').attr("src", img.src);
-
-						var canvas = document.createElement("canvas");
-						var ctx = canvas.getContext("2d");
-						img.onload = function () {
-							var canvas = document.createElement("canvas");
-							var ctx = canvas.getContext("2d");
-							ctx.drawImage(img, 0, 0);
-							var MAX_WIDTH = 400;
-							var MAX_HEIGHT = 400;
-							var width = img.width;
-							var height = img.height;
-
-							if (width > height) {
-									if (width > MAX_WIDTH) {
-											height *= MAX_WIDTH / width;
-											width = MAX_WIDTH;
-									}
-							} else {
-									if (height > MAX_HEIGHT) {
-											width *= MAX_HEIGHT / height;
-											height = MAX_HEIGHT;
-									}
-							}
-							canvas.width = width;
-							canvas.height = height;
-							var ctx = canvas.getContext("2d");
-							ctx.drawImage(img, 0, 0, width, height);
-							let dataurl = canvas.toDataURL();
-							document.getElementById('selected-image').src = dataurl;
-							extension = dataurl.split(';base64,')[0].split('/')[1];
-							base64Image = dataurl.replace(/data:image\/(png|jpg|jpeg|JPG|JPEG|);base64,/,"");
-						}
-          }
-          reader.readAsDataURL($("#image-selector")[0].files[0]);
-        });
-
-				async function fetchLabelAndBreed() {
-					document.getElementsByClassName("animated-gif")[0].src = "VAyR.gif";
-					let message = {
-						image: base64Image,
-						type: extension
-					};
-					const [dogresponse, breedresponse] = await Promise.all([
-						fetch("http://165.227.88.103:5000/predict",{
-							method: 'POST',
-							body: JSON.stringify(message)
-						}),
-						fetch("http://165.227.88.103:8181/predict",{
-							method: 'POST',
-							body: JSON.stringify(message)
-						})
-					]);
-
 	<img class='animated-gif' src="gif.gif" alt=”animated” />
+	<img class='animated-gif-frame' src="window.png" />
 	<h3 class="instructions">
 		Upload an image of your pupper and our robot technology will guess which breed your dog looks most similar to!
 	</h3>
 	<div class="flier" id="label"></div>
-	<input id="image-selector" type="file" ></input>
-	<button onclick="fetchLabelAndBreed()" id="predict-button">Predict</button>
+
+	<div class="animated-gif">
+		<input id="image-selector" type="file" ></input>
+		<button onclick="fetchLabelAndBreed()" id="predict-button">Predict</button>
+	</div>
+
 	<img class='upimg' id="selected-image" src=""/>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	
 	<script>
-	let base64Image;
-	let extension;
-
-	$("#image-selector").change(function() {
-		let reader = new FileReader();
-		const img = new Image();
-		reader.onload = function(e) {
-			img.src = reader.result;
-			$('#selected-image').attr("src", img.src);
-			var canvas = document.createElement("canvas");
-			var ctx = canvas.getContext("2d");
-			img.onload = function () {
+		let base64Image;
+		let extension;
+		$("#image-selector").change(function() {
+			let reader = new FileReader();
+			const img = new Image();
+			reader.onload = function(e) {
+				img.src = reader.result;
+				$('#selected-image').attr("src", img.src);
+				
 				var canvas = document.createElement("canvas");
 				var ctx = canvas.getContext("2d");
-				ctx.drawImage(img, 0, 0);
-				var MAX_WIDTH = 400;
-				var MAX_HEIGHT = 400;
-				var width = img.width;
-				var height = img.height;
-
-				if (width > height) {
-					if (width > MAX_WIDTH) {
-						height *= MAX_WIDTH / width;
-						width = MAX_WIDTH;
+				img.onload = function () {
+					var canvas = document.createElement("canvas");
+					var ctx = canvas.getContext("2d");
+					ctx.drawImage(img, 0, 0);
+					var MAX_WIDTH = 400;
+					var MAX_HEIGHT = 400;
+					var width = img.width;
+					var height = img.height;
+					
+					if (width > height) {
+						if (width > MAX_WIDTH) {
+							height *= MAX_WIDTH / width;
+							width = MAX_WIDTH;
+						}
+					} else {
+						if (height > MAX_HEIGHT) {
+							width *= MAX_HEIGHT / height;
+							height = MAX_HEIGHT;
+						}
 					}
-				} else {
-					if (height > MAX_HEIGHT) {
-						width *= MAX_HEIGHT / height;
-						height = MAX_HEIGHT;
-					}
+					canvas.width = width;
+					canvas.height = height;
+					var ctx = canvas.getContext("2d");
+					ctx.drawImage(img, 0, 0, width, height);
+					let dataurl = canvas.toDataURL();
+					document.getElementById('selected-image').src = dataurl;
+					extension = dataurl.split(';base64,')[0].split('/')[1];
+					base64Image = dataurl.replace(/data:image\/(png|jpg|jpeg|JPG|JPEG|);base64,/,"");
 				}
-				
-				canvas.width = width;
-				canvas.height = height;
-				var ctx = canvas.getContext("2d");
-				ctx.drawImage(img, 0, 0, width, height);
-				let dataurl = canvas.toDataURL();
-				document.getElementById('selected-image').src = dataurl;
-				extension = dataurl.split(';base64,')[0].split('/')[1];
-				base64Image = dataurl.replace(/data:image\/(png|jpg|jpeg|JPG|JPEG|);base64,/,"");
 			}
-          	}
-		
-	reader.readAsDataURL($("#image-selector")[0].files[0]);
-	});
+		reader.readAsDataURL($("#image-selector")[0].files[0]);
+		});
 
+		async function fetchLabelAndBreed() {
+			document.getElementsByClassName("animated-gif")[0].src = "https://plaza.one/img/backs/45.gif";
+			let message = {
+				image: base64Image,
+				type: extension
+			};
+			const [notdogresponse, dogresponse, breedresponse] = await Promise.all([
+				fetch("http://68.183.126.220:8081/predict",{
+					method: "POST",
+					body: JSON.stringify(message)
+				}),
+				fetch("http://68.183.126.220:5000/predict",{
+					method: 'POST',
+					body: JSON.stringify(message)
+				}),
+				fetch("http://68.183.126.220:8181/predict",{
+					method: 'POST',
+					body: JSON.stringify(message)
+				})
+			]);
+			
+			const notdog = await notdogresponse.json();
+			const yolo = await dogresponse.json();
+			const breedjson = await breedresponse.json();
+			
+			
+			var filter = notdog.prediction;
+			var yoloimg = yolo.prediction;
+			var label = yolo.label;
 
-	async function fetchLabelAndBreed() {
-		document.getElementsByClassName("animated-gif")[0].src = "VAyR.gif";
-		let message = {
-			image: base64Image,
-			type: extension
+			var outputImg = document.createElement('img');
+			outputImg.setAttribute("class", "downimg");
+			outputImg.setAttribute("id", "predimg");
+			outputImg.src = yoloimg;
+			document.body.appendChild(outputImg);
+
+			if ($(window).width() > 600) {
+				var outputImgwindow = document.createElement('img');
+				outputImgwindow.setAttribute("class", "downimg-window");
+				outputImgwindow.setAttribute("id", "predimg-window");
+				outputImgwindow.src = "popupwindow.png";
+				document.body.appendChild(outputImgwindow);
+			}
+
+			if (filter == "Not Dog") {
+				$("#label").text("Not Dog");
+			} else {
+				var breed = breedjson.breed;
+				$("#label").text(breed);
+			}
 		};
-		const [dogresponse, breedresponse] = await Promise.all([
-			fetch("http://165.227.88.103:5000/predict",{
-				method: 'POST',
-				body: JSON.stringify(message)
-			}),
-			fetch("http://165.227.88.103:8181/predict",{
-				method: 'POST',
-				body: JSON.stringify(message)
-			})
-		]);
-
-		const yolo = await dogresponse.json();
-		const breedjson = await breedresponse.json();
-
-		var yoloimg = yolo.prediction;
-		var outputImg = document.createElement('img');
-		outputImg.setAttribute("class", "downimg");
-		outputImg.setAttribute("id", "predimg");
-		outputImg.src = yoloimg;
-		document.body.appendChild(outputImg);
-
-		var breed = breedjson.breed;
-		var label = yolo.label;
-
-		if (label=="NOT DOG") {
-			$("#label").text(label)
-		} else {
-			$("#label").text(breed)
-		}
-	};
-		
 	</script>
 	<script src="js/wow.min.js"></script>
-	<script> new WOW().init();
-	</script>
 </body>
 </html>
