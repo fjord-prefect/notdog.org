@@ -20,15 +20,14 @@ body {
 
 .instructions {
   position: absolute;
-  top: 360px;
-  font-size: 1.5em;
-  margin-right: 60%;
-  font-family: 'Orbitron';
+  top: 240px;
+  font-size: 1.7em;
+  margin-right: 70%;
+  font-family: 'VT323',monospace;
+  font-weight: lighter;
+  font-smooth: none;
+  text-align: left;
   color: #6f3d99;
-  text-shadow:
-      0 0 1px white,
-      0 0 10px #ff71ce,
-      0 0 20px white;
 }
 .flier {
   position: relative;
@@ -100,7 +99,7 @@ body {
 .neon-body {
   position: absolute;
   left: 35px;
-  top: 238px;
+  top: 168px;
   font-family: 'Orbitron';
   font-size: 2em;
   color: white;
@@ -140,7 +139,7 @@ body {
 img.animated-gif {
   position: absolute;
   z-index: 1;
-  top: 385px;
+  top: 315px;
   right: 90px;
   width: 530px;
   height: 340px;
@@ -149,7 +148,7 @@ img.animated-gif {
 img.animated-gif-frame {
   position: absolute;
   z-index:1;
-  top: 335px;
+  top: 265px;
   right: 0px;
   width: 640px;
   height: 400px;
@@ -158,7 +157,7 @@ img.animated-gif-frame {
 img.upimg {
   position: absolute;
   z-index: 2;
-  top: 563px;
+  top: 493px;
   right:16px;
   height:88px;
   width:197px;
@@ -183,7 +182,7 @@ img.downimg-window {
 button {
   position: absolute;
   z-index: 3;
-  top: 620px;
+  top: 580px;
   left: 5%;
   font-family: 'Monoton';
   font-size: 1.4em;
@@ -215,10 +214,42 @@ button:before {
 input {
   z-index: 2;
   position: absolute;
-  top: 647px;
+  top: 607px;
   left: 28%;
 }
 
+.footer{
+  position:fixed;
+  background-color:black;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 70px;
+  opacity: .855555;
+}
+
+.footer-text-left {
+  font-size:22px;
+  font-weight: BOLD;
+  font-family: 'Andale Mono';
+  padding-left:15px;
+  float:left;
+}
+
+a.menu {
+  background-color:#ffcccc;
+  border: 15px solid #ffcccc;
+  color: black;
+  font-size:20px;
+  word-spacing: -.3em;
+}
+
+a.menu:hover {
+  background-color:#ffcccc;
+  border: 25px #ffcccc;
+  color: black;
+  font-size:25px;
+}
 @media only screen and (max-width: 600px) {
   html {
     background-image: auto;
