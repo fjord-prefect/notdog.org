@@ -18,10 +18,10 @@ body {
   text-align: center;
 }
 
-.instructions {
-  position: absolute;
-  top: 240px;
-  font-size: 1.7em;
+.window {
+  position: relative;
+  z-index:2;
+  font-size: 2em;
   margin-right: 70%;
   font-family: 'VT323',monospace;
   font-weight: lighter;
@@ -79,7 +79,7 @@ body {
   position: relative;
   left: 50px;
   font-family: 'Monoton';
-  font-size: 3em;
+  font-size: 4em;
   font-style: italic;
   font-weight:  2;
   letter-spacing: .1em;
@@ -98,10 +98,10 @@ body {
 }
 .neon-body {
   position: absolute;
-  left: 35px;
-  top: 168px;
+  left: 105px;
+  top: 174px;
   font-family: 'Orbitron';
-  font-size: 2em;
+  font-size: 2.5em;
   color: white;
   filter: blur(.7px);
   text-shadow:
@@ -180,12 +180,12 @@ img.downimg-window {
   height: 371px;
 }
 button {
-  position: absolute;
+  position:absolute;
   z-index: 3;
   top: 580px;
   left: 5%;
   font-family: 'Monoton';
-  font-size: 1.4em;
+  font-size: 2em;
   height:70px;
   width:150px;
   color: yellow;
@@ -220,35 +220,38 @@ input {
 
 .footer{
   position:fixed;
-  background-color:black;
+  background-color:#01cdfe;
   bottom: 0px;
   left: 0px;
   right: 0px;
   height: 70px;
-  opacity: .855555;
 }
 
 .footer-text-left {
   font-size:22px;
+  word-spacing: 30px;
   font-weight: BOLD;
   font-family: 'Andale Mono';
-  padding-left:15px;
+  padding-left:65px;
   float:left;
 }
-
-a.menu {
-  background-color:#ffcccc;
-  border: 15px solid #ffcccc;
-  color: black;
-  font-size:20px;
-  word-spacing: -.3em;
-}
-
 a.menu:hover {
   background-color:#ffcccc;
   border: 25px #ffcccc;
   color: black;
   font-size:25px;
+}
+.star {
+  z-index:2;
+  position:fixed;
+  bottom: 25px;
+  left: 20px;
+}
+.star2 {
+  z-index:2;
+  position:fixed;
+  bottom: 25px;
+  left: 710px;
 }
 @media only screen and (max-width: 600px) {
   html {
@@ -270,19 +273,18 @@ a.menu:hover {
   body {
     text-align: center;
   }
-
-  .instructions {
-    position: absolute;
-    text-align: center;
-    top: 370px;
-    font-size: 1.15em;
-    font-family: 'Orbitron';
+  .window {
+    position: relative;
+    z-index:2;
+    top: 120px;
+    font-size: 1.4em;
+    margin-right: 60%;
+    font-family: 'VT323',monospace;
+    font-weight: lighter;
+    font-smooth: none;
+    text-align: left;
     color: #6f3d99;
-    text-shadow:
-        0 0 1px white,
-        0 0 10px #ff71ce,
-        0 0 20px white;
-  }
+  }  
   h4 {
     position: absolute;
     z-index: 2;
@@ -303,7 +305,7 @@ a.menu:hover {
     position: relative;
     left: 50px;
     font-family: 'Monoton';
-    font-size: 3em;
+    font-size: 4em;
     font-style: italic;
     font-weight:  2;
     letter-spacing: .1em;
@@ -426,3 +428,31 @@ a.menu:hover {
     left: 160px;
     top: 640px;
   }
+  .footer{
+     position:fixed;
+     background-color:#01cdfe;
+     bottom: 0px;
+     left: 0px;
+     right: 0px;
+     height: 40px;
+   }
+  .footer-text-left {
+     font-size:12px;
+     word-spacing: 10px;
+     font-weight: BOLD;
+     font-family: 'Andale Mono';
+     padding-left:65px;
+     float:left;
+   }
+   a.menu:hover {
+     background-color:#ffcccc;
+     border: 25px #ffcccc;
+     color: black;
+     font-size:25px;
+   }
+   .star {
+     z-index:2;
+     position:fixed;
+     bottom: 8px;
+     left: 20px;
+   }
